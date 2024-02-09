@@ -45,6 +45,31 @@ app.post('/users', (req, res)=>{
         }else{console.log(err.message)}
     })                    
 })
+
+app.put('/users/:id', (req, res)=>{
+    const user =req.body;
+    let updateQuery =`update users
+                      set username = '${user.username}',
+                      password = '${user.password}'
+                      where id = ${user.id}`
+     client.query(updateQuery, (err, result)=>{
+        if(!err){
+            res.send('update was successful');
+        }else{console.log(err.message)}
+     })      
+     client.end;           
+});
+
+app.delete('/users/:id', (req, res)=>{
+    let deleteQyuery = `delete from users where id =${req.params.id}`
+    client.query(deleteQyuery, (err,result)=>{
+        if(!err){
+            res.send('Deleted Successfully!')
+        }else{console.log(err.message)}
+    })
+    client.end;
+})
+
 client.connect();
 
 app.listen(port ,()=>{
