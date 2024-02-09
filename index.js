@@ -24,9 +24,29 @@ app.get('/users', (req, res)=>{
         }
     });
     client.end;
+});
+
+app.get('/users/:id', (req, res)=>{
+    client.query(`SELECT * FROM users WHERE id=${req.params.id}`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+});
+
+app.post('/users', (req, res)=>{
+    const user = req.body;
+    let insertQuery = `insert into users(id, username, password) 
+    values(${user.id}, '${user.username}', '${user.password}')`
+    client.query(insertQuery, (err, result)=>{
+        if(!err){
+            res.send('Insertion was successful');
+        }else{console.log(err.message)}
+    })                    
 })
 client.connect();
 
 app.listen(port ,()=>{
-    console.log(`liwstening to the port ${port}`);
+    console.log(`listening to the port ${port}`);
 });
