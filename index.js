@@ -4,9 +4,9 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
-const port = 4000;
+const port = 8080;
 
-const client = require('./quires/quires')
+const client = require('./connection/dbConnection')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
