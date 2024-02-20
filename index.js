@@ -16,7 +16,6 @@ app.get('/', (req,res)=>{
 });
 
 
-
 app.get('/users', (req, res)=>{
     client.query(`Select * from users`, (err, result)=>{
         if(!err){
