@@ -72,5 +72,5 @@ app.delete('/users/:id', (req, res)=>{
 client.connect();
 
 app.listen(port ,()=>{
-    console.log(`listening to the port ${port}`);
+    console.log(`listening to the port number ${port}`);
 });
